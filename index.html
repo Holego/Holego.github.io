@@ -40,9 +40,15 @@
   :focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 2px; }
 
   /* ───── Background: wallpaper + eyes opening out of the void ───── */
-  .void {
-    position: fixed; inset: 0; z-index: -1; overflow: hidden;
-    background: #0a0d07 url("assets/bg.jpg") center / cover no-repeat;
+  .void { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #0a0d07; }
+  .void::before {   /* the texture slowly drifts and breathes (transform only: cheap on the GPU) */
+    content: ""; position: absolute; inset: -6%;
+    background: url("assets/bg.jpg") center / cover no-repeat;
+    will-change: transform; animation: drift 90s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    from { transform: translate3d(-1.8%, -1.2%, 0) scale(1.02); }
+    to   { transform: translate3d(1.8%, 1.2%, 0) scale(1.1); }
   }
   .void::after {
     content: ""; position: absolute; inset: 0;
@@ -68,7 +74,9 @@
   }
   @keyframes gaze { 0%, 100% { transform: translateX(-9px); } 50% { transform: translateX(9px); } }
   @media (max-width: 700px) { .eye:nth-child(n+4) { display: none; } .eye:nth-child(1) { --x: 40% !important; --y: 9% !important; } }
-  @media (prefers-reduced-motion: reduce) { .eye { display: none; } html { scroll-behavior: auto; } }
+  @media (prefers-reduced-motion: reduce) { .eye { display: none; } .void::before { animation: none; } html { scroll-behavior: auto; } }
+  html.calm .eye { display: none; }
+  html.calm .void::before { animation: none; }
 
   /* ───── Top bar (Polybar) ───── */
   header.top {
@@ -96,7 +104,8 @@
   nav a.on b { color: var(--accent); }
   .clock { display: flex; align-items: center; color: var(--muted); font-size: 0.9rem; padding-left: 8px; }
   @media (max-width: 560px) {
-    nav a { padding: 0 8px; font-size: 0.82rem; gap: 4px; }
+    nav a { padding: 0 7px; font-size: 0.8rem; gap: 3px; }
+    .calm-btn { padding: 3px 7px; margin-left: 2px; }
     nav a b { display: none; }
     .clock { display: none; }
     .brand span { display: none; }
@@ -154,7 +163,55 @@
     border-radius: 4px; font-size: 0.88rem;
   }
   .chip:hover { border-color: var(--accent); color: var(--accent-bright); }
+  a.chip { color: var(--text); text-decoration: none; }
   .lede { color: var(--muted); margin-top: -8px; }
+
+  /* calm switch in the bar */
+  .calm-btn {
+    align-self: center; margin-left: 6px; padding: 3px 10px; font: inherit; font-size: 0.8rem; cursor: pointer;
+    color: var(--muted); background: transparent; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .calm-btn:hover { color: var(--text); border-color: var(--accent); }
+  .calm-btn[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+
+  /* Featured game */
+  .feature .cover { position: relative; aspect-ratio: 21 / 8; border-bottom: 1px solid var(--border); background: #05070a; }
+  .feature .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+  .feature .text { padding: 20px 22px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; }
+  .feature .text p { padding: 0; margin: 0 0 12px; color: var(--muted); font-size: 0.93rem; }
+  .feature .text .kicker { color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
+  .feature ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.88rem; }
+  .feature li { margin-bottom: 6px; }
+  .feature li::marker { color: var(--accent); }
+  .feature .tags { padding: 0; }
+  .note { color: var(--dim); font-size: 0.8rem; }
+  @media (max-width: 760px) { .feature .text { grid-template-columns: 1fr; } .feature .text ul { margin-top: 6px; } .feature .cover { aspect-ratio: 16 / 9; } }
+
+  h3.sub { margin: 30px 0 12px; font-size: 1rem; color: var(--muted); }
+  h3.sub::before { content: "## "; color: var(--accent); }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .shot {
+    padding: 0; margin: 0; text-align: left; font: inherit; color: inherit; cursor: zoom-in;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+    transition: border-color .15s, transform .15s;
+  }
+  .shot:hover, .shot:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+  .shot img, .clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #05070a; }
+  .shot span, .clip figcaption { display: block; padding: 8px 12px 10px; font-size: 0.8rem; color: var(--muted); }
+  .models { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .clip { margin: 0; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .clip video, .clip img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; height: auto; display: block; }
+
+  dialog#lb {
+    max-width: min(96vw, 1500px); max-height: 94vh; padding: 0; border: 1px solid var(--accent); border-radius: 6px;
+    background: var(--panel-solid); color: var(--text); overflow: hidden;
+  }
+  dialog#lb::backdrop { background: rgba(3, 5, 2, 0.88); }
+  dialog#lb img { display: block; max-width: 100%; max-height: 84vh; margin: 0 auto; }
+  dialog#lb .cap { margin: 0; padding: 10px 16px; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); }
+  dialog#lb .x { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; font: inherit; font-size: 1.3rem; line-height: 1;
+                 cursor: pointer; color: var(--text); background: rgba(10, 13, 7, 0.8); border: 1px solid var(--border); border-radius: 4px; }
+  dialog#lb .x:hover { border-color: var(--accent); color: var(--accent-bright); }
 
   .timeline .item {
     padding: 0 0 22px 20px; border-left: 2px solid var(--border); position: relative;
@@ -199,12 +256,14 @@
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Rouger Bin"><img src="assets/cthulhu.svg" alt=""><span>Rouger Bin</span></a>
     <nav>
-      <a href="#projects"><b>1</b>Projects</a>
-      <a href="#apps"><b>2</b>Apps</a>
-      <a href="#about"><b>3</b>About</a>
-      <a href="#contact"><b>4</b>Contact</a>
+      <a href="#game"><b>1</b>Game</a>
+      <a href="#projects"><b>2</b>Projects</a>
+      <a href="#apps"><b>3</b>Apps</a>
+      <a href="#about"><b>4</b>About</a>
+      <a href="#contact"><b>5</b>Contact</a>
     </nav>
     <span class="clock" id="clock" aria-hidden="true"></span>
+    <button class="calm-btn" id="calm" type="button" aria-pressed="false" title="Turn the moving background and the eyes off">calm</button>
   </div>
 </header>
 
@@ -222,9 +281,61 @@
     <div class="btns">
       <a class="btn primary" href="https://github.com/Holego" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="mailto:rougbinhol@gmail.com">Email me</a>
+      <a class="btn" href="#game">Current project</a>
       <a class="btn" href="privacy-policy.html">Privacy Policy</a>
     </div>
   </div>
+
+  <section id="game">
+    <h2>Current project</h2>
+    <article class="card feature">
+      <h3>forgotten-island-4 — in development</h3>
+      <div class="cover"><img src="assets/fi4/world-peaks.webp" width="1280" height="720" alt="Snowy mountain peaks in the Forgotten Island 4 open-world prototype" loading="lazy"></div>
+      <div class="text">
+        <div>
+        <p class="kicker">Forgotten Island 4 — fantasy action RPG</p>
+        <p>
+          A story-driven action RPG built in Godot 4 for solo play, co-op and a persistent shared world.
+          Play the campaign alone or with up to eight allies through levels 1–60, then step into the online world.
+          It is a playable prototype in active development: systems are built, tested and documented one by one.
+        </p>
+
+        <div class="tags"><span class="tag">Godot 4.7</span><span class="tag">GDScript</span><span class="tag">Multiplayer</span><span class="tag">Blender</span><span class="tag prog">In development</span></div>
+        <p class="note" style="margin-top:12px">The source code is in a private repository. The in-game UI is currently in Russian.</p>
+        </div>
+        <ul>
+          <li>Real-time combat: class resources and abilities (warrior rage, mage, rogue combo points), directional weapon motions, status effects and hit feedback.</li>
+          <li>Enemy AI with a threat system; bosses with telegraphed attacks (charge, ground slam, grab-and-throw) and group boss encounters.</li>
+          <li>Procedurally generated dungeon floors built from room sockets, plus a death and resurrection flow.</li>
+          <li>A streamed open-world prototype with a world map.</li>
+          <li>Server-authoritative co-op and MMO foundations: accounts backend, dedicated zone server, trading, mounts, chat.</li>
+          <li>Quests, dialogues, shops, interactive mechanisms (levers, code doors, pressure plates) and environment zones (water, sand, wind, vortex).</li>
+        </ul>
+      </div>
+    </article>
+
+    <h3 class="sub">Screenshots</h3>
+    <div class="shots">
+      <button class="shot" type="button" data-full="assets/fi4/world-peaks.webp" data-cap="Open-world prototype: snowy peaks"><img src="assets/fi4/world-peaks.webp" width="1280" height="720" loading="lazy" alt="Snowy peaks in the open-world prototype"><span>Open world: snowy peaks</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/world-forest.webp" data-cap="Open-world prototype: forest and mountains"><img src="assets/fi4/world-forest.webp" width="1280" height="720" loading="lazy" alt="Forest and mountains in the open-world prototype"><span>Open world: forest and mountains</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/world-coast.webp" data-cap="Open-world prototype: the coast"><img src="assets/fi4/world-coast.webp" width="1280" height="720" loading="lazy" alt="The coast in the open-world prototype"><span>Open world: the coast</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/ui-character.webp" data-cap="Character sheet and bags (UI in Russian)"><img src="assets/fi4/ui-character.webp" width="1389" height="950" loading="lazy" alt="Character sheet and inventory window"><span>Character sheet and bags</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/mech-code.webp" data-cap="Mechanisms: a code-locked door and a chest"><img src="assets/fi4/mech-code.webp" width="1280" height="720" loading="lazy" alt="Code panel of a locked door next to a chest"><span>Mechanisms: code door</span></button>
+    </div>
+
+    <h3 class="sub">Characters and models</h3>
+    <div class="shots">
+      <button class="shot" type="button" data-full="assets/fi4/models-idle.webp" data-cap="Hero and enemy models on a shared rig: idle"><img src="assets/fi4/models-idle.webp" width="1400" height="891" loading="lazy" alt="Three character models standing idle"><span>Shared rig: idle</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/models-attack.webp" data-cap="Hero and enemy models on a shared rig: attack"><img src="assets/fi4/models-attack.webp" width="1400" height="891" loading="lazy" alt="Three character models in attack poses"><span>Shared rig: attack</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/models-cast.webp" data-cap="Hero and enemy models on a shared rig: cast"><img src="assets/fi4/models-cast.webp" width="1400" height="891" loading="lazy" alt="Three character models in casting poses"><span>Shared rig: cast</span></button>
+    </div>
+    <div class="models" style="margin-top:14px">
+      <figure class="clip"><video src="assets/fi4/lich-slam.mp4" poster="assets/fi4/lich-slam-poster.jpg" muted loop playsinline autoplay preload="metadata" width="384" height="512" aria-label="Lich boss ground slam animation"></video><figcaption>Lich boss: ground slam</figcaption></figure>
+      <figure class="clip"><video src="assets/fi4/lich-walk.mp4" poster="assets/fi4/lich-walk-poster.jpg" muted loop playsinline autoplay preload="metadata" width="384" height="512" aria-label="Lich boss walk animation"></video><figcaption>Lich boss: walk</figcaption></figure>
+      <figure class="clip"><img src="assets/fi4/lich-idle.webp" width="640" height="800" loading="lazy" alt="Lich boss model, idle render"><figcaption>Lich boss: idle render</figcaption></figure>
+      <figure class="clip"><img src="assets/fi4/lich-mace.webp" width="640" height="800" loading="lazy" alt="The lich's war mace, render"><figcaption>Lich war mace</figcaption></figure>
+    </div>
+  </section>
 
   <section id="projects">
     <h2>Projects</h2>
@@ -264,13 +375,14 @@
     <h2>Games on Google Play</h2>
     <p class="lede">Simple casual games, published under the developer name <strong>Rouger Bin</strong>.</p>
     <div class="chips">
-      <span class="chip">Bitcoin Miner</span>
-      <span class="chip">Doors Kicker</span>
-      <span class="chip">Mr President vs Terrorist</span>
-      <span class="chip">Minesandbox</span>
-      <span class="chip">Sky Hopper</span>
-      <span class="chip">Space Hulk 2D</span>
-      <span class="chip">2042</span>
+      <a class="chip" href="https://play.google.com/store/apps/details?id=com.rough_hold.btcminer" target="_blank" rel="noopener">Bitcoin Miner</a>
+      <a class="chip" href="https://play.google.com/store/apps/details?id=com.rough_hold.doorkickerrun" target="_blank" rel="noopener">Doors Kicker</a>
+      <a class="chip" href="https://play.google.com/store/apps/details?id=com.rough_hold.eagleone" target="_blank" rel="noopener">Mr President vs Terrorist</a>
+      <a class="chip" href="https://play.google.com/store/apps/details?id=com.rough_hold.minesandbox" target="_blank" rel="noopener">Minesandbox</a>
+      <a class="chip" href="https://play.google.com/store/apps/details?id=com.rough_hold.skyhopper" target="_blank" rel="noopener">Sky Hopper</a>
+      <a class="chip" href="https://play.google.com/store/apps/details?id=com.rough_hold.spacehulk2d" target="_blank" rel="noopener">Space Hulk 2D</a>
+      <a class="chip" href="https://play.google.com/store/apps/details?id=com.rough_hold.treeinrlinetwentittwo" target="_blank" rel="noopener">2042</a>
+    
     </div>
   </section>
 
@@ -316,6 +428,12 @@
   </div>
 </footer>
 
+<dialog id="lb" aria-label="Image viewer">
+  <button class="x" type="button" aria-label="Close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</dialog>
+
 <script>
   // Clock in the bar + highlight of the section being read (both optional: the page works without JS)
   (function () {
@@ -326,8 +444,33 @@
     }
     tick(); setInterval(tick, 20000);
 
-    var links = {}, ids = ["projects", "apps", "about", "contact"];
+    var links = {}, ids = ["game", "projects", "apps", "about", "contact"];
     document.querySelectorAll("nav a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+    // Calm mode: no moving background, no eyes, no autoplaying clips (remembered; on by default for "reduce motion")
+    var root = document.documentElement, btn = document.getElementById("calm"), videos = document.querySelectorAll("video");
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function setCalm(on, save) {
+      root.classList.toggle("calm", on); btn.setAttribute("aria-pressed", on ? "true" : "false");
+      videos.forEach(function (v) {
+        if (on) { v.pause(); v.controls = true; } else { v.controls = false; v.play && v.play().catch(function () {}); }
+      });
+      if (save) { try { localStorage.setItem("calm", on ? "1" : "0"); } catch (e) {} }
+    }
+    var saved = null; try { saved = localStorage.getItem("calm"); } catch (e) {}
+    setCalm(saved === null ? reduce : saved === "1", false);
+    btn.addEventListener("click", function () { setCalm(!root.classList.contains("calm"), true); });
+
+    // Lightbox for screenshots
+    var lb = document.getElementById("lb"), lbImg = lb.querySelector("img"), lbCap = lb.querySelector(".cap");
+    document.querySelectorAll(".shot").forEach(function (b) {
+      b.addEventListener("click", function () {
+        lbImg.src = b.dataset.full; lbImg.alt = b.querySelector("img").alt; lbCap.textContent = b.dataset.cap;
+        if (lb.showModal) lb.showModal(); else window.open(b.dataset.full, "_blank");
+      });
+    });
+    lb.querySelector(".x").addEventListener("click", function () { lb.close(); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+
     if (!("IntersectionObserver" in window)) return;
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
