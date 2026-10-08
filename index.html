@@ -176,7 +176,7 @@
 
   /* Featured game */
   .feature .cover { position: relative; aspect-ratio: 21 / 8; border-bottom: 1px solid var(--border); background: #05070a; }
-  .feature .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+  .feature .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
   .feature .text { padding: 20px 22px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; }
   .feature .text p { padding: 0; margin: 0 0 12px; color: var(--muted); font-size: 0.93rem; }
   .feature .text .kicker { color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
@@ -198,7 +198,7 @@
   .shot:hover, .shot:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
   .shot img, .clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #05070a; }
   .shot span, .clip figcaption { display: block; padding: 8px 12px 10px; font-size: 0.8rem; color: var(--muted); }
-  .models { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .models { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
   .clip { margin: 0; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
   .clip video, .clip img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; height: auto; display: block; }
 
@@ -290,7 +290,7 @@
     <h2>Current project</h2>
     <article class="card feature">
       <h3>forgotten-island-4 — in development</h3>
-      <div class="cover"><img src="assets/fi4/world-peaks.webp" width="1280" height="720" alt="Snowy mountain peaks in the Forgotten Island 4 open-world prototype" loading="lazy"></div>
+      <div class="cover"><img src="assets/fi4/castle-throne.webp" width="1391" height="980" alt="The throne hall of the Winter Castle in Forgotten Island 4" loading="lazy"></div>
       <div class="text">
         <div>
         <p class="kicker">Forgotten Island 4 — fantasy action RPG</p>
@@ -314,7 +314,18 @@
       </div>
     </article>
 
-    <h3 class="sub">Screenshots</h3>
+    <h3 class="sub">Winter Castle: the prologue level</h3>
+    <p class="lede" style="margin:0 0 14px;font-size:0.9rem">A snowbound castle with a boss waiting in the throne hall. Prototype level, frames captured in the engine.</p>
+    <div class="shots">
+      <button class="shot" type="button" data-full="assets/fi4/castle-throne.webp" data-cap="Winter Castle: the throne hall"><img src="assets/fi4/castle-throne.webp" width="1391" height="980" loading="lazy" alt="The throne hall of the Winter Castle with banners and torches"><span>The throne hall</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/castle-moon.webp" data-cap="Winter Castle: the carpet to the throne under the moon"><img src="assets/fi4/castle-moon.webp" width="1391" height="980" loading="lazy" alt="Red carpet between torches in the snowy castle courtyard under the moon"><span>Courtyard under the moon</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/castle-torch.webp" data-cap="Winter Castle: torches along the carpet"><img src="assets/fi4/castle-torch.webp" width="1391" height="980" loading="lazy" alt="A burning torch beside the red carpet in the castle"><span>Torches along the carpet</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/castle-edge.webp" data-cap="Winter Castle: the ruined edge, seen from above"><img src="assets/fi4/castle-edge.webp" width="1391" height="980" loading="lazy" alt="The broken edge of the castle floor seen from above"><span>The ruined edge</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/castle-tower.webp" data-cap="Winter Castle: the castle tower seen from outside in the fog"><img src="assets/fi4/castle-tower.webp" width="1391" height="980" loading="lazy" alt="The castle tower seen from outside in the fog"><span>Seen from outside</span></button>
+      <button class="shot" type="button" data-full="assets/fi4/castle-plan.webp" data-cap="Winter Castle: top-down overview of the level"><img src="assets/fi4/castle-plan.webp" width="1391" height="980" loading="lazy" alt="Top-down view of the castle level"><span>Top-down overview</span></button>
+    </div>
+
+    <h3 class="sub">Open world, UI and mechanisms</h3>
     <div class="shots">
       <button class="shot" type="button" data-full="assets/fi4/world-peaks.webp" data-cap="Open-world prototype: snowy peaks"><img src="assets/fi4/world-peaks.webp" width="1280" height="720" loading="lazy" alt="Snowy peaks in the open-world prototype"><span>Open world: snowy peaks</span></button>
       <button class="shot" type="button" data-full="assets/fi4/world-forest.webp" data-cap="Open-world prototype: forest and mountains"><img src="assets/fi4/world-forest.webp" width="1280" height="720" loading="lazy" alt="Forest and mountains in the open-world prototype"><span>Open world: forest and mountains</span></button>
@@ -324,16 +335,13 @@
     </div>
 
     <h3 class="sub">Characters and models</h3>
-    <div class="shots">
-      <button class="shot" type="button" data-full="assets/fi4/models-idle.webp" data-cap="Hero and enemy models on a shared rig: idle"><img src="assets/fi4/models-idle.webp" width="1400" height="891" loading="lazy" alt="Three character models standing idle"><span>Shared rig: idle</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/models-attack.webp" data-cap="Hero and enemy models on a shared rig: attack"><img src="assets/fi4/models-attack.webp" width="1400" height="891" loading="lazy" alt="Three character models in attack poses"><span>Shared rig: attack</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/models-cast.webp" data-cap="Hero and enemy models on a shared rig: cast"><img src="assets/fi4/models-cast.webp" width="1400" height="891" loading="lazy" alt="Three character models in casting poses"><span>Shared rig: cast</span></button>
-    </div>
-    <div class="models" style="margin-top:14px">
-      <figure class="clip"><video src="assets/fi4/lich-slam.mp4" poster="assets/fi4/lich-slam-poster.jpg" muted loop playsinline autoplay preload="metadata" width="384" height="512" aria-label="Lich boss ground slam animation"></video><figcaption>Lich boss: ground slam</figcaption></figure>
-      <figure class="clip"><video src="assets/fi4/lich-walk.mp4" poster="assets/fi4/lich-walk-poster.jpg" muted loop playsinline autoplay preload="metadata" width="384" height="512" aria-label="Lich boss walk animation"></video><figcaption>Lich boss: walk</figcaption></figure>
+    <div class="models">
+      <figure class="clip"><video src="assets/fi4/lich-slam.mp4" poster="assets/fi4/lich-slam-poster.jpg" muted loop playsinline autoplay preload="metadata" width="540" height="720" aria-label="Lich boss ground slam animation"></video><figcaption>Lich boss: ground slam</figcaption></figure>
+      <figure class="clip"><video src="assets/fi4/lich-walk.mp4" poster="assets/fi4/lich-walk-poster.jpg" muted loop playsinline autoplay preload="metadata" width="540" height="720" aria-label="Lich boss walk animation"></video><figcaption>Lich boss: walk</figcaption></figure>
       <figure class="clip"><img src="assets/fi4/lich-idle.webp" width="640" height="800" loading="lazy" alt="Lich boss model, idle render"><figcaption>Lich boss: idle render</figcaption></figure>
       <figure class="clip"><img src="assets/fi4/lich-mace.webp" width="640" height="800" loading="lazy" alt="The lich's war mace, render"><figcaption>Lich war mace</figcaption></figure>
+      <figure class="clip"><img src="assets/fi4/succubus.webp" width="800" height="1040" loading="lazy" alt="Render of the succubus character model with horns, tail and spiked armor"><figcaption>Succubus: character model, Blender render</figcaption></figure>
+      <figure class="clip"><video src="assets/fi4/succubus-turn.mp4" poster="assets/fi4/succubus-turn-poster.jpg" muted loop playsinline autoplay preload="metadata" width="540" height="720" aria-label="Turntable of the succubus character model"></video><figcaption>Succubus: 360° turntable</figcaption></figure>
     </div>
   </section>
 
