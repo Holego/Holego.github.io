@@ -51,6 +51,10 @@
     from { transform: translate3d(calc(var(--tile) * -1), 0, 0); }
     to   { transform: translate3d(0, 0, 0); }
   }
+  .void::after {   /* darkening + vignette: keeps the text readable over the picture */
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(10, 13, 7, 0.45) 0%, rgba(10, 13, 7, 0.86) 100%);
+  }
   .eye {
     position: absolute; width: var(--w); aspect-ratio: 2 / 1;
     left: var(--x); top: var(--y); transform-origin: center;
@@ -235,6 +239,7 @@
   }
   .shot:hover, .shot:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
   .shot img, .clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #05070a; }
+  .shot img[src*="/sys-"] { object-position: 50% 0; }
   .shot span, .clip figcaption { display: block; padding: 8px 12px 10px; font-size: 0.8rem; color: var(--muted); }
   .models { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
   .clip { margin: 0; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
