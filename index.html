@@ -172,21 +172,6 @@
   a.tag:hover { border-color: var(--accent); color: var(--accent-bright); }
   .card .tags a.tag.repo { color: var(--accent); border-color: var(--border); }
 
-  /* Google Play: one scrollable row of tiles */
-  .strip { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 14px; scroll-snap-type: x proximity;
-           scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
-  .tile { flex: 0 0 auto; width: 158px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 4px;
-          padding: 14px 14px 12px; text-decoration: none; color: var(--text);
-          background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
-          -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: border-color .15s, transform .15s; }
-  .tile:hover, .tile:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
-  .tile .mono { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 8px; border-radius: 12px;
-                font-weight: 700; font-size: 1.05rem; color: var(--accent); background: var(--bar); border: 1px solid var(--border); }
-  .tile:hover .mono { border-color: var(--accent); }
-  .tile b { font-size: 0.86rem; line-height: 1.3; }
-  .tile small { color: var(--dim); font-size: 0.74rem; }
-
-  .tile img.icon { width: 56px; height: 56px; margin-bottom: 8px; border-radius: 13px; display: block; background: var(--bar); }
   .appgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
   .app { display: grid; grid-template-columns: 64px 1fr; gap: 6px 14px; align-items: start; padding: 14px 16px;
          background: var(--panel); border: 1px solid var(--border); border-radius: 6px; color: var(--text);
@@ -198,6 +183,58 @@
   .app .links2 { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
   .app .links2 a { font-size: 0.74rem; padding: 1px 8px; border: 1px solid var(--border); border-radius: 3px; text-decoration: none; color: var(--accent); }
   .app .links2 a:hover { border-color: var(--accent); color: var(--accent-bright); }
+
+  /* Games showcase: screenshots on the left, description on the right, game icons below */
+  .store { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+           -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .store-title { margin: 0; padding: 6px 14px; text-align: center; font-size: 0.88rem; font-weight: 600; color: var(--muted);
+                 background: var(--bar); border-bottom: 1px solid var(--border); }
+  .store-main { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 22px; padding: 18px 20px 16px; min-height: 400px; }
+  .store-main.swap { animation: swapin .25s ease-out; }
+  @keyframes swapin { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .store-shots { position: relative; min-width: 0; }
+  .shots-strip { display: flex; gap: 10px; height: 370px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x proximity;
+                 scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+  .slide { flex: 0 0 auto; height: 100%; padding: 0; margin: 0; cursor: zoom-in; scroll-snap-align: start; overflow: hidden;
+           background: #05070a; border: 1px solid var(--border); border-radius: 6px; transition: border-color .15s; }
+  .slide:hover, .slide:focus-visible { border-color: var(--accent); }
+  .slide img { display: block; height: 100%; width: auto; max-width: none; }
+  .arrow { position: absolute; top: calc(50% - 22px); width: 34px; height: 34px; display: grid; place-items: center; padding: 0;
+           font: inherit; font-size: 1.2rem; line-height: 1; cursor: pointer; color: var(--text);
+           background: rgba(10, 13, 7, 0.82); border: 1px solid var(--border); border-radius: 50%; }
+  .arrow:hover { border-color: var(--accent); color: var(--accent-bright); }
+  .arrow[hidden] { display: none; }
+  .arrow.l { left: 8px; } .arrow.r { right: 8px; }
+  .store-info { min-width: 0; display: flex; flex-direction: column; }
+  .store-head { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
+  .store-head img { width: 72px; height: 72px; flex: 0 0 auto; border-radius: 16px; background: var(--bar); }
+  .store-head h3 { margin: 0 0 6px; font-size: 1.15rem; line-height: 1.25; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+  .badge { font-size: 0.72rem; padding: 1px 8px; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); }
+  .badge.live { color: var(--accent); border-color: #3a5016; }
+  .badge.soon { color: #d9a72b; border-color: #5a4614; }
+  .store-info .tagline { margin: 0 0 10px; color: var(--accent); font-weight: 700; font-size: 0.92rem; }
+  .store-info .desc p { margin: 0 0 10px; color: var(--muted); font-size: 0.88rem; }
+  .actions { margin-top: auto; padding-top: 8px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn.off { color: var(--dim); border-style: dashed; cursor: default; pointer-events: none; }
+  .store-nav { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--border); background: rgba(10, 13, 7, 0.55); }
+  .nav-btn { flex: 0 0 auto; width: 34px; height: 34px; padding: 0; font: inherit; font-size: 1.2rem; line-height: 1; cursor: pointer;
+             color: var(--muted); background: transparent; border: 1px solid var(--border); border-radius: 6px; }
+  .nav-btn:hover { color: var(--accent-bright); border-color: var(--accent); }
+  .store-tabs { display: flex; gap: 8px; flex: 1; min-width: 0; overflow-x: auto; padding: 3px 2px; scrollbar-width: none; }
+  .store-tabs::-webkit-scrollbar { display: none; }
+  .gtab { flex: 0 0 auto; width: 92px; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 8px 6px 7px;
+          font: inherit; font-size: 0.7rem; line-height: 1.25; text-align: center; cursor: pointer; color: var(--muted);
+          background: transparent; border: 1px solid transparent; border-radius: 8px; transition: border-color .15s, color .15s; }
+  .gtab img { width: 52px; height: 52px; border-radius: 12px; background: var(--bar); }
+  .gtab:hover { color: var(--text); }
+  .gtab[aria-selected="true"] { color: var(--accent-bright); background: var(--bar); border-color: var(--accent); }
+  @media (max-width: 760px) {
+    .store-main { grid-template-columns: 1fr; gap: 14px; padding: 14px; }
+    .shots-strip { height: 280px; }
+    .gtab { width: 80px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .store-main.swap { animation: none; } }
 
   /* Stack and interests */
   .stack { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
@@ -391,20 +428,24 @@
   </section>
 
   <section id="apps">
-    <h2>Games on Google Play</h2>
-    <p class="lede">Simple casual games, published under the developer name <strong>Rouger Bin</strong>.</p>
-    <div class="strip">
-      <a class="tile" href="https://play.google.com/store/apps/details?id=com.rough_hold.fnafsonicepshtinherobrin" target="_blank" rel="noopener"><img class="icon" src="assets/icons/sonic.webp" width="56" height="56" alt=""><b>Fnaf X Sonic.exe X Herobrine</b><small>Google Play ↗</small></a>
-      <a class="tile" href="https://play.google.com/store/apps/details?id=com.rough_hold.minesandbox" target="_blank" rel="noopener"><img class="icon" src="assets/icons/minesandbox.webp" width="56" height="56" alt=""><b>Minesandbox</b><small>Google Play ↗</small></a>
+    <h2>Games &amp; apps</h2>
+    <p class="lede">Android games and apps published under the developer name <strong>Rouger Bin</strong>.
+      <a href="https://play.google.com/store/apps/developer?id=Rouger+Bin" target="_blank" rel="noopener">All on Google Play ↗</a></p>
+    <div class="store" id="store">
+      <h3 class="store-title">google-play — Rouger Bin</h3>
+      <div class="store-main" id="store-main" role="tabpanel"></div>
+      <div class="store-nav">
+        <button class="nav-btn" id="g-prev" type="button" aria-label="Previous game">‹</button>
+        <div class="store-tabs" id="store-tabs" role="tablist" aria-label="Games"></div>
+        <button class="nav-btn" id="g-next" type="button" aria-label="Next game">›</button>
+      </div>
     </div>
-    <!-- Not published on Google Play at the moment (the store pages return 404). Put a tile back when a game is live again:
-      Bitcoin Miner      com.rough_hold.btcminer
-      Doors Kicker       com.rough_hold.doorkickerrun
-      Mr President vs Terrorist  com.rough_hold.eagleone
-      Sky Hopper         com.rough_hold.skyhopper
-      Space Hulk 2D      com.rough_hold.spacehulk2d
-      2042               com.rough_hold.treeinrlinetwentittwo
-    -->
+    <noscript><p>
+      <a href="https://play.google.com/store/apps/details?id=com.rough_hold.spacehulk2d">Nova Reaper</a> ·
+      <a href="https://play.google.com/store/apps/details?id=com.rough_hold.fnafsonicepshtinherobrin">Fnaf X Sonic.exe X Herobrine</a> ·
+      <a href="https://play.google.com/store/apps/details?id=com.rough_hold.minesandbox">Minesandbox</a> ·
+      <a href="https://github.com/Holego/BCam">Background Camera</a>
+    </p></noscript>
   </section>
 
   <section id="about">
@@ -503,7 +544,7 @@
     <h2>Contact</h2>
     <ul class="links">
       <li><span>Email</span><a href="mailto:rougbinhol@gmail.com">rougbinhol@gmail.com</a></li>
-      <li><span>GitHub</span><a href="https://github.com/Holego" target="_blank" rel="noopener">github.com/Holego</a> (nick: <b>Holego</b>)</li>
+      <li><span>GitHub</span><a href="https://github.com/Holego" target="_blank" rel="noopener">github.com/Holego</a></li>
       <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/derbyshevgeorgii/" target="_blank" rel="noopener">linkedin.com/in/derbyshevgeorgii</a></li>
       <li><span>Telegram</span><a href="https://t.me/CertifiedSOCL1" target="_blank" rel="noopener">@CertifiedSOCL1</a></li>
     </ul>
@@ -524,6 +565,7 @@
   <p class="cap"></p>
 </dialog>
 
+<script src="assets/games.js"></script>
 <script>
   // Clock in the bar + highlight of the section being read (both optional: the page works without JS)
   (function () {
@@ -552,14 +594,82 @@
 
     // Lightbox for screenshots
     var lb = document.getElementById("lb"), lbImg = lb.querySelector("img"), lbCap = lb.querySelector(".cap");
+    function openLightbox(src, alt, cap) {
+      lbImg.src = src; lbImg.alt = alt || ""; lbCap.textContent = cap || "";
+      if (lb.showModal) lb.showModal(); else window.open(src, "_blank");
+    }
     document.querySelectorAll(".shot").forEach(function (b) {
-      b.addEventListener("click", function () {
-        lbImg.src = b.dataset.full; lbImg.alt = b.querySelector("img").alt; lbCap.textContent = b.dataset.cap;
-        if (lb.showModal) lb.showModal(); else window.open(b.dataset.full, "_blank");
-      });
+      b.addEventListener("click", function () { openLightbox(b.dataset.full, b.querySelector("img").alt, b.dataset.cap); });
     });
     lb.querySelector(".x").addEventListener("click", function () { lb.close(); });
     lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+
+    // Games showcase: the data lives in assets/games.js
+    var games = window.GAMES || [], storeMain = document.getElementById("store-main"), tabs = document.getElementById("store-tabs");
+    var smooth = reduce ? "auto" : "smooth", current = -1;
+    function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function selectGame(i, userAction) {
+      var g = games[i]; if (!g) return;
+      current = i;
+      Array.prototype.forEach.call(tabs.children, function (t, k) {
+        t.setAttribute("aria-selected", k === i ? "true" : "false"); t.tabIndex = k === i ? 0 : -1;
+      });
+      var shots = (g.screenshots || []).map(function (u, k) {
+        return '<button class="slide" type="button" data-full="' + esc(u) + '" data-cap="' + esc(g.title) + ' — screenshot ' + (k + 1) + '">' +
+               '<img src="' + esc(u) + '" alt="' + esc(g.title) + ' screenshot ' + (k + 1) + '" loading="' + (k < 2 ? "eager" : "lazy") + '"></button>';
+      }).join("");
+      var badge = g.live ? '<span class="badge live">Google Play</span>' : '<span class="badge soon">Coming soon</span>';
+      var tags = (g.tags || []).map(function (t) { return '<span class="badge">' + esc(t) + "</span>"; }).join("");
+      var desc = (g.description || []).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("");
+      var play = g.live && g.play ? '<a class="btn primary" href="' + esc(g.play) + '" target="_blank" rel="noopener">Get it on Google Play ↗</a>'
+               : '<span class="btn off">Google Play: coming soon</span>';
+      var gh = g.github ? '<a class="btn" href="' + esc(g.github) + '" target="_blank" rel="noopener">GitHub ↗</a>' : "";
+      storeMain.setAttribute("aria-labelledby", "tab-" + i);
+      storeMain.innerHTML =
+        '<div class="store-shots"><div class="shots-strip" tabindex="0" aria-label="Screenshots of ' + esc(g.title) + '">' + shots + '</div>' +
+        '<button class="arrow l" type="button" aria-label="Scroll screenshots left" hidden>‹</button>' +
+        '<button class="arrow r" type="button" aria-label="Scroll screenshots right" hidden>›</button></div>' +
+        '<div class="store-info"><div class="store-head"><img src="' + esc(g.icon) + '" alt="" width="72" height="72"><div><h3>' + esc(g.title) +
+        '</h3><div class="badges">' + badge + tags + '</div></div></div><p class="tagline">' + esc(g.tagline || "") + '</p>' +
+        '<div class="desc">' + desc + '</div><div class="actions">' + play + gh + '</div></div>';
+      var strip = storeMain.querySelector(".shots-strip"), al = storeMain.querySelector(".arrow.l"), ar = storeMain.querySelector(".arrow.r");
+      function arrows() {
+        var max = strip.scrollWidth - strip.clientWidth - 2;
+        al.hidden = strip.scrollLeft < 4; ar.hidden = strip.scrollLeft > max || max <= 0;
+      }
+      strip.addEventListener("scroll", arrows, { passive: true }); window.addEventListener("resize", arrows); arrows();
+      Array.prototype.forEach.call(strip.querySelectorAll("img"), function (im) { im.addEventListener("load", arrows); });
+      al.addEventListener("click", function () { strip.scrollBy({ left: -strip.clientWidth * 0.8, behavior: smooth }); });
+      ar.addEventListener("click", function () { strip.scrollBy({ left: strip.clientWidth * 0.8, behavior: smooth }); });
+      Array.prototype.forEach.call(strip.querySelectorAll(".slide"), function (b) {
+        var im = b.querySelector("img");
+        b.addEventListener("click", function () { openLightbox(b.dataset.full, im.alt, b.dataset.cap); });
+      });
+      if (userAction) {
+        storeMain.classList.remove("swap"); void storeMain.offsetWidth; storeMain.classList.add("swap");
+        tabs.children[i].scrollIntoView({ inline: "center", block: "nearest", behavior: smooth });
+      }
+    }
+    if (games.length) {
+      games.forEach(function (g, i) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "gtab"; b.id = "tab-" + i; b.setAttribute("role", "tab");
+        b.setAttribute("aria-controls", "store-main");
+        b.innerHTML = '<img src="' + esc(g.icon) + '" alt="" width="52" height="52"><span>' + esc(g.title) + "</span>";
+        b.addEventListener("click", function () { selectGame(i, true); });
+        tabs.appendChild(b);
+      });
+      tabs.addEventListener("keydown", function (e) {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        var n = (current + (e.key === "ArrowRight" ? 1 : -1) + games.length) % games.length;
+        selectGame(n, true); tabs.children[n].focus(); e.preventDefault();
+      });
+      document.getElementById("g-prev").addEventListener("click", function () { selectGame((current - 1 + games.length) % games.length, true); });
+      document.getElementById("g-next").addEventListener("click", function () { selectGame((current + 1) % games.length, true); });
+      selectGame(0, false);
+    } else {
+      document.getElementById("store").hidden = true;
+    }
 
     if (!("IntersectionObserver" in window)) return;
     var io = new IntersectionObserver(function (entries) {
