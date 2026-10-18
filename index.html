@@ -184,6 +184,19 @@
   .app .links2 a { font-size: 0.74rem; padding: 1px 8px; border: 1px solid var(--border); border-radius: 3px; text-decoration: none; color: var(--accent); }
   .app .links2 a:hover { border-color: var(--accent); color: var(--accent-bright); }
 
+  /* Current projects: tabs */
+  .ptabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+  .ptab { display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 10px 18px; font: inherit; cursor: pointer;
+          color: var(--muted); background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
+          -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: border-color .15s; }
+  .ptab b { font-size: 0.95rem; color: var(--text); }
+  .ptab small { font-size: 0.74rem; color: var(--dim); }
+  .ptab:hover { border-color: var(--accent); }
+  .ptab[aria-selected="true"] { border-color: var(--accent); background: var(--bar); }
+  .ptab[aria-selected="true"] b { color: var(--accent-bright); }
+  #ppanel.swap { animation: swapin .25s ease-out; }
+  .clip video { background: #05070a; }
+
   /* Games showcase: screenshots on the left, description on the right, game icons below */
   .store { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
            -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
@@ -278,7 +291,7 @@
   .shot img, .clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #05070a; }
   .shot img[src*="/sys-"] { object-position: 50% 0; }
   .shot span, .clip figcaption { display: block; padding: 8px 12px 10px; font-size: 0.8rem; color: var(--muted); }
-  .models { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .models { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
   .clip { margin: 0; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
   .clip video, .clip img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; height: auto; display: block; }
 
@@ -339,7 +352,7 @@
       <a href="#projects"><b>1</b>Projects</a>
       <a href="#apps"><b>2</b>Apps</a>
       <a href="#about"><b>3</b>About</a>
-      <a href="#game"><b>4</b>Game</a>
+      <a href="#game"><b>4</b>Current</a>
       <a href="#contact"><b>5</b>Contact</a>
     </nav>
     <span class="clock" id="clock" aria-hidden="true"></span>
@@ -362,7 +375,7 @@
       <a class="btn primary" href="https://github.com/Holego" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/derbyshevgeorgii/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" href="mailto:rougbinhol@gmail.com">Email me</a>
-      <a class="btn" href="#game">Current project</a>
+      <a class="btn" href="#game">Current projects</a>
       <a class="btn" href="privacy-policy.html">Privacy Policy</a>
     </div>
   </div>
@@ -474,70 +487,11 @@
   </section>
 
   <section id="game">
-    <h2>Current project</h2>
-    <article class="card feature">
-      <h3>forgotten-island-4 — in development</h3>
-      <div class="cover"><img src="assets/fi4/castle-throne.webp" width="1391" height="980" alt="The throne hall of the Winter Castle in Forgotten Island 4" loading="lazy"></div>
-      <div class="text">
-        <div>
-        <p class="kicker">Forgotten Island 4 — fantasy action RPG</p>
-        <p>
-          A story-driven action RPG built in Godot 4 for solo play, co-op and a persistent shared world.
-          Play the campaign alone or with up to eight allies through levels 1–60, then step into the online world.
-          It is a playable prototype in active development: systems are built, tested and documented one by one.
-        </p>
-        <div class="tags"><span class="tag">Godot 4.7</span><span class="tag">GDScript</span><span class="tag">Multiplayer</span><span class="tag">Blender</span><span class="tag prog">In development</span></div>
-        </div>
-        <ul>
-          <li>Real-time combat: class resources and abilities (warrior rage, mage, rogue combo points), directional weapon motions, status effects and hit feedback.</li>
-          <li>Sides and races (Empire and Horde), reputation, a character creation screen and class gear rules.</li>
-          <li>Professions and crafting (alchemy, mining), shops and dialogue market windows.</li>
-          <li>Poisons, throwable flasks and dynamite, traps.</li>
-          <li>Enemy AI with a threat system; bosses with telegraphed attacks (charge, ground slam, grab-and-throw) and group boss encounters.</li>
-          <li>Procedurally generated dungeon floors built from room sockets, plus a death and resurrection flow.</li>
-          <li>A streamed open-world prototype with a world map.</li>
-          <li>Server-authoritative co-op and MMO foundations: accounts backend, dedicated zone server, trading, mounts, chat.</li>
-          <li>Quests and dialogues, interactive mechanisms (levers, code doors, pressure plates) and environment zones (water, sand, wind, vortex).</li>
-        </ul>
-      </div>
-    </article>
-
-    <h3 class="sub">Winter Castle: the prologue level</h3>
-    <p class="lede" style="margin:0 0 14px;font-size:0.9rem">A snowbound castle with a boss waiting in the throne hall. Prototype level, frames captured in the engine.</p>
-    <div class="shots">
-      <button class="shot" type="button" data-full="assets/fi4/castle-throne.webp" data-cap="Winter Castle: the throne hall"><img src="assets/fi4/castle-throne.webp" width="1391" height="980" loading="lazy" alt="The throne hall of the Winter Castle with banners and torches"><span>The throne hall</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/castle-moon.webp" data-cap="Winter Castle: the carpet to the throne under the moon"><img src="assets/fi4/castle-moon.webp" width="1391" height="980" loading="lazy" alt="Red carpet between torches in the snowy castle courtyard under the moon"><span>Courtyard under the moon</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/castle-torch.webp" data-cap="Winter Castle: torches along the carpet"><img src="assets/fi4/castle-torch.webp" width="1391" height="980" loading="lazy" alt="A burning torch beside the red carpet in the castle"><span>Torches along the carpet</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/castle-edge.webp" data-cap="Winter Castle: the ruined edge, seen from above"><img src="assets/fi4/castle-edge.webp" width="1391" height="980" loading="lazy" alt="The broken edge of the castle floor seen from above"><span>The ruined edge</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/castle-tower.webp" data-cap="Winter Castle: the castle tower seen from outside in the fog"><img src="assets/fi4/castle-tower.webp" width="1391" height="980" loading="lazy" alt="The castle tower seen from outside in the fog"><span>Seen from outside</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/castle-plan.webp" data-cap="Winter Castle: top-down overview of the level"><img src="assets/fi4/castle-plan.webp" width="1391" height="980" loading="lazy" alt="Top-down view of the castle level"><span>Top-down overview</span></button>
-    </div>
-
-    <h3 class="sub">Open world prototype</h3>
-    <div class="shots">
-      <button class="shot" type="button" data-full="assets/fi4/world-peaks.webp" data-cap="Open-world prototype: snowy peaks"><img src="assets/fi4/world-peaks.webp" width="1280" height="720" loading="lazy" alt="Snowy peaks in the open-world prototype"><span>Snowy peaks</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/world-forest.webp" data-cap="Open-world prototype: forest and mountains"><img src="assets/fi4/world-forest.webp" width="1280" height="720" loading="lazy" alt="Forest and mountains in the open-world prototype"><span>Forest and mountains</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/world-coast.webp" data-cap="Open-world prototype: the coast"><img src="assets/fi4/world-coast.webp" width="1280" height="720" loading="lazy" alt="The coast in the open-world prototype"><span>The coast</span></button>
-    </div>
-
-    <h3 class="sub">Game systems</h3>
-    <div class="shots">
-      <button class="shot" type="button" data-full="assets/fi4/sys-creation.webp" data-cap="Character creation: sides, races and classes (the interface is in Russian)"><img src="assets/fi4/sys-creation.webp" width="1280" height="720" loading="lazy" alt="Character creation screen with races, classes and a demon mage preview"><span>Character creation: races and classes</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/sys-alchemy.webp" data-cap="Professions: the alchemy skill tree"><img src="assets/fi4/sys-alchemy.webp" width="1028" height="707" loading="lazy" alt="The alchemy skill tree in the character book"><span>Professions: alchemy tree</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/sys-crafting.webp" data-cap="Professions: crafting recipes"><img src="assets/fi4/sys-crafting.webp" width="1028" height="707" loading="lazy" alt="The crafting recipe list in the character book"><span>Professions: crafting</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/sys-shop.webp" data-cap="Market window: buying and selling"><img src="assets/fi4/sys-shop.webp" width="700" height="694" loading="lazy" alt="A shop window with goods to buy and items to sell"><span>Market window</span></button>
-      <button class="shot" type="button" data-full="assets/fi4/sys-throw.webp" data-cap="Throwable flasks and area effects (dev room)"><img src="assets/fi4/sys-throw.webp" width="1400" height="800" loading="lazy" alt="Colored area effects of throwable flasks in the dev room"><span>Throwables and area effects</span></button>
-    </div>
-
-    <h3 class="sub">Characters and models</h3>
-    <div class="models">
-      <figure class="clip"><video src="assets/fi4/lich-slam.mp4" poster="assets/fi4/lich-slam-poster.jpg" muted loop playsinline autoplay preload="metadata" width="540" height="720" aria-label="Lich boss ground slam animation"></video><figcaption>Lich boss: ground slam</figcaption></figure>
-      <figure class="clip"><video src="assets/fi4/lich-walk.mp4" poster="assets/fi4/lich-walk-poster.jpg" muted loop playsinline autoplay preload="metadata" width="540" height="720" aria-label="Lich boss walk animation"></video><figcaption>Lich boss: walk</figcaption></figure>
-      <figure class="clip"><img src="assets/fi4/lich-idle.webp" width="640" height="800" loading="lazy" alt="Lich boss model, idle render"><figcaption>Lich boss: idle render</figcaption></figure>
-      <figure class="clip"><img src="assets/fi4/lich-mace.webp" width="640" height="800" loading="lazy" alt="The lich's war mace, render"><figcaption>Lich war mace</figcaption></figure>
-      <figure class="clip"><img src="assets/fi4/succubus.webp" width="800" height="1040" loading="lazy" alt="Render of the succubus character model with horns, tail and spiked armor"><figcaption>Succubus: character model, Blender render</figcaption></figure>
-      <figure class="clip"><video src="assets/fi4/succubus-turn.mp4" poster="assets/fi4/succubus-turn-poster.jpg" muted loop playsinline autoplay preload="metadata" width="540" height="720" aria-label="Turntable of the succubus character model"></video><figcaption>Succubus: 360° turntable</figcaption></figure>
-    </div>
+    <h2>Current projects</h2>
+    <p class="lede">What I am building now: screens of the mechanics, worlds and rotating character models.</p>
+    <div class="ptabs" id="ptabs" role="tablist" aria-label="Current projects"></div>
+    <div id="ppanel" role="tabpanel"></div>
+    <noscript><p>Forgotten Island 4 (fantasy action RPG, Godot) and Darker than Black: Hei's Shard (third-person action game, Godot). Screenshots and models need JavaScript.</p></noscript>
   </section>
 
   <section id="contact">
@@ -566,6 +520,7 @@
 </dialog>
 
 <script src="assets/games.js"></script>
+<script src="assets/projects.js"></script>
 <script>
   // Clock in the bar + highlight of the section being read (both optional: the page works without JS)
   (function () {
@@ -579,12 +534,27 @@
     var links = {}, ids = ["projects", "apps", "about", "game", "contact"];
     document.querySelectorAll("nav a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
     // Calm mode: no moving background, no eyes, no autoplaying clips (remembered; on by default for "reduce motion")
-    var root = document.documentElement, btn = document.getElementById("calm"), videos = document.querySelectorAll("video");
+    var root = document.documentElement, btn = document.getElementById("calm");
     var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Clips play only while they are on screen (and never in calm mode)
+    var vio = ("IntersectionObserver" in window) ? new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (root.classList.contains("calm")) return;
+        if (e.isIntersecting) { v.play && v.play().catch(function () {}); } else { v.pause(); }
+      });
+    }, { threshold: 0.25 }) : null;
+    function watchVideos(scope) {
+      Array.prototype.forEach.call(scope.querySelectorAll("video"), function (v) {
+        v.controls = root.classList.contains("calm");
+        if (vio) vio.observe(v); else if (!root.classList.contains("calm")) v.play && v.play().catch(function () {});
+      });
+    }
     function setCalm(on, save) {
       root.classList.toggle("calm", on); btn.setAttribute("aria-pressed", on ? "true" : "false");
-      videos.forEach(function (v) {
-        if (on) { v.pause(); v.controls = true; } else { v.controls = false; v.play && v.play().catch(function () {}); }
+      Array.prototype.forEach.call(document.querySelectorAll("video"), function (v) {
+        if (on) { v.pause(); v.controls = true; }
+        else { v.controls = false; if (vio) { vio.unobserve(v); vio.observe(v); } else { v.play && v.play().catch(function () {}); } }
       });
       if (save) { try { localStorage.setItem("calm", on ? "1" : "0"); } catch (e) {} }
     }
@@ -604,10 +574,63 @@
     lb.querySelector(".x").addEventListener("click", function () { lb.close(); });
     lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
 
+    // Current projects: the data lives in assets/projects.js
+    var projects = window.PROJECTS || [], pTabs = document.getElementById("ptabs"), pPanel = document.getElementById("ppanel"), pCur = -1;
+    function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function projectItem(it, layout, i) {
+      if (it.video) {
+        return '<figure class="clip"><video src="' + esc(it.video) + '" poster="' + esc(it.poster || "") + '" muted loop playsinline preload="none" width="540" height="720" aria-label="' +
+               esc(it.cap || "") + '"></video><figcaption>' + esc(it.cap || "") + "</figcaption></figure>";
+      }
+      return '<button class="shot" type="button" data-full="' + esc(it.img) + '" data-cap="' + esc(it.cap || "") + '"><img src="' + esc(it.img) + '" alt="' + esc(it.alt || it.cap || "") +
+             '" loading="lazy"><span>' + esc(it.cap || "") + "</span></button>";
+    }
+    function selectProject(i, user) {
+      var p = projects[i]; if (!p) return;
+      pCur = i;
+      Array.prototype.forEach.call(pTabs.children, function (t, k) { t.setAttribute("aria-selected", k === i ? "true" : "false"); t.tabIndex = k === i ? 0 : -1; });
+      var tags = (p.tags || []).map(function (t) { return '<span class="tag">' + esc(t) + "</span>"; }).join("") + (p.status ? '<span class="tag prog">' + esc(p.status) + "</span>" : "");
+      var intro = (p.intro || []).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("");
+      var feats = (p.features || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
+      var groups = (p.groups || []).map(function (g) {
+        var cls = g.layout === "models" ? "models" : "shots";
+        return '<h3 class="sub">' + esc(g.title) + "</h3>" + (g.intro ? '<p class="lede" style="margin:0 0 14px;font-size:0.9rem">' + esc(g.intro) + "</p>" : "") +
+               '<div class="' + cls + '">' + (g.items || []).map(function (it, k) { return projectItem(it, cls, k); }).join("") + "</div>";
+      }).join("");
+      pPanel.setAttribute("aria-labelledby", "ptab-" + i);
+      pPanel.innerHTML =
+        '<article class="card feature"><h3>' + esc(p.id) + (p.status ? " — " + esc(String(p.status).toLowerCase()) : "") + "</h3>" +
+        (p.cover ? '<div class="cover"><img src="' + esc(p.cover) + '" width="1391" height="980" alt="' + esc(p.coverAlt || p.title) + '"></div>' : "") +
+        '<div class="text"><div><p class="kicker">' + esc(p.title) + (p.kicker ? " — " + esc(p.kicker) : "") + "</p>" + intro + '<div class="tags">' + tags + "</div></div><ul>" + feats + "</ul></div></article>" + groups;
+      Array.prototype.forEach.call(pPanel.querySelectorAll(".shot"), function (b) {
+        b.addEventListener("click", function () { openLightbox(b.dataset.full, b.querySelector("img").alt, b.dataset.cap); });
+      });
+      watchVideos(pPanel);
+      if (user) { pPanel.classList.remove("swap"); void pPanel.offsetWidth; pPanel.classList.add("swap"); }
+    }
+    if (projects.length) {
+      projects.forEach(function (p, i) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "ptab"; b.id = "ptab-" + i; b.setAttribute("role", "tab"); b.setAttribute("aria-controls", "ppanel");
+        b.innerHTML = "<b>" + esc(p.title) + "</b><small>" + esc(p.kicker || "") + "</small>";
+        b.addEventListener("click", function () { selectProject(i, true); });
+        pTabs.appendChild(b);
+      });
+      pTabs.addEventListener("keydown", function (e) {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        var n = (pCur + (e.key === "ArrowRight" ? 1 : -1) + projects.length) % projects.length;
+        selectProject(n, true); pTabs.children[n].focus(); e.preventDefault();
+      });
+      var want = 0;
+      if (/^#game-/.test(location.hash)) projects.forEach(function (p, i) { if ("#game-" + p.id === location.hash) want = i; });
+      selectProject(want, false);
+    } else {
+      document.getElementById("game").hidden = true;
+    }
+
     // Games showcase: the data lives in assets/games.js
     var games = window.GAMES || [], storeMain = document.getElementById("store-main"), tabs = document.getElementById("store-tabs");
     var smooth = reduce ? "auto" : "smooth", current = -1;
-    function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
     function selectGame(i, userAction) {
       var g = games[i]; if (!g) return;
       current = i;

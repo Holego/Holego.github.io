@@ -8,12 +8,16 @@ A plain static site (no build step): GitHub Pages publishes whatever is in the `
 
 | File | What it is |
 |---|---|
-| `index.html` | the whole page: texts, projects, stack, contacts, the game section |
-| `assets/games.js` | **the games showcase data**: add, change or remove a game here (see below) |
+| `index.html` | the page itself: texts, projects, stack, contacts |
+| `assets/games.js` | **the games showcase data** (Google Play games): add, change or remove a game here (see below) |
+| `assets/projects.js` | **the "Current projects" tabs**: text, screenshots and rotating models of each project (see below) |
 | `privacy-policy.html` | privacy policy used by the Google Play listings |
 | `app-ads.txt` | AdMob verification file: keep the name and the place (the site root) |
 | `assets/games/<id>/` | icon and screenshots of each game |
-| `assets/icons/`, `assets/fi4/` | mod icons; screenshots and clips of Forgotten Island 4 |
+| `assets/fi4/`, `assets/dtb/` | screenshots of Forgotten Island 4 and Darker than Black |
+| `assets/models/` | rotating character models (short looping videos with a poster picture) |
+| `assets/icons/` | mod icons |
+| `tools/turntable.py` | Blender script that renders a rotating model (see below) |
 | `assets/bg*.jpg` | background pictures |
 
 ## Edit on GitHub, without any tools
@@ -31,6 +35,28 @@ You can also press the `.` key on the repository page to open a full editor in t
 3. When the Google Play page of a game opens, change `live: false` to `live: true`. The button then becomes a real link.
 
 Rules for the data file: texts in "double quotes", commas between items, no comma after the last item.
+
+### Change the "Current projects" tabs
+
+Open `assets/projects.js`. Every project is one `{ ... }` block (= one tab) with its text, a list of features and **groups** of pictures.
+A group is either `layout: "shots"` (screenshots, click to enlarge) or `layout: "models"` (rotating models and short clips). Add a picture by
+adding one line to `items` and uploading the file into `assets/fi4/`, `assets/dtb/` or `assets/models/`. The fields are explained at the top of the file.
+
+Tips: screenshots as `.webp` (or `.jpg`) up to about 1400 px wide and 150 KB; crop away debug text and empty margins first.
+
+### Make a rotating model
+
+1. Install Blender and ffmpeg, then render the frames (the model can be a `.glb`, `.gltf` or `.blend`):
+   ```
+   blender -b --factory-startup --python tools/turntable.py -- model.glb frames --boost 1.0
+   ```
+   (`--hide Name` skips a part, `--boost 2` makes the light stronger for dark models, `--still pic.png` renders one big picture.)
+2. Encode the frames and a poster picture:
+   ```
+   ffmpeg -framerate 24 -i frames/f_%03d.png -c:v libx264 -crf 26 -pix_fmt yuv420p -an -movflags +faststart assets/models/hero.mp4
+   ffmpeg -i frames/f_000.png -frames:v 1 -q:v 4 assets/models/hero-poster.jpg
+   ```
+3. Add `{ video: "assets/models/hero.mp4", poster: "assets/models/hero-poster.jpg", cap: "Hero" }` to the `items` of a `"models"` group in `assets/projects.js`.
 
 ### Something went wrong
 
