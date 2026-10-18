@@ -78,13 +78,14 @@ window.PROJECTS = [
       },
       {
         title: "Characters and bosses",
-        intro: "Rotating models: rogue, demon warrior, warrior, an Empire crusader in armor, succubus and the lich boss, plus two boss animations.",
+        intro: "Rotating models: rogue, Empire knight and crusader, demon warrior, new warrior, succubus and the lich boss, plus two boss animations.",
         layout: "models",
         items: [
           { video: "assets/models/rogue.mp4", poster: "assets/models/rogue-poster.jpg", cap: "Rogue" },
+          { video: "assets/models/knightf.mp4", poster: "assets/models/knightf-poster.jpg", cap: "Knight: warrior of the Empire" },
+          { video: "assets/models/crusader.mp4", poster: "assets/models/crusader-poster.jpg", cap: "Crusader (Empire)" },
           { video: "assets/models/demon-warrior.mp4", poster: "assets/models/demon-warrior-poster.jpg", cap: "Demon warrior" },
           { video: "assets/models/warrior.mp4", poster: "assets/models/warrior-poster.jpg", cap: "Warrior (new)" },
-          { video: "assets/models/crusader.mp4", poster: "assets/models/crusader-poster.jpg", cap: "Crusader: warrior of the Empire" },
           { video: "assets/models/succubus.mp4", poster: "assets/models/succubus-poster.jpg", cap: "Succubus" },
           { video: "assets/models/lich-boss.mp4", poster: "assets/models/lich-boss-poster.jpg", cap: "Lich boss" },
           { video: "assets/fi4/lich-slam.mp4", poster: "assets/fi4/lich-slam-poster.jpg", cap: "Lich boss: ground slam" },
