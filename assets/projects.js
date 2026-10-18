@@ -5,6 +5,7 @@
   To add a project: copy a whole block, paste it after the last one, then change the fields.
 
     id, title          short name without spaces / the name shown on the tab
+    icon               optional square picture, shown on the tab and next to the title (like an app icon)
     kicker             one line under the title, e.g. the genre
     status             small badge, e.g. "In development"
     tags               small labels
@@ -100,6 +101,7 @@ window.PROJECTS = [
     kicker: "Third-person action game, fan project",
     status: "In development",
     tags: ["Godot 4.7", "GDScript", "Third-person action", "Blender"],
+    icon: "assets/dtb/icon.webp",
     cover: "assets/dtb/discharge.webp",
     coverAlt: "Hei discharging electricity between enemies",
     intro: [
@@ -132,11 +134,12 @@ window.PROJECTS = [
         ]
       },
       {
-        title: "Character",
-        intro: "Hei, a rotating model (body, coat and mask).",
+        title: "Characters",
+        intro: "Rotating models: Hei (body, coat and mask) and a bandit, one of the ordinary enemies.",
         layout: "models",
         items: [
-          { video: "assets/models/hei.mp4", poster: "assets/models/hei-poster.jpg", cap: "Hei" }
+          { video: "assets/models/hei.mp4", poster: "assets/models/hei-poster.jpg", cap: "Hei" },
+          { video: "assets/models/bandit.mp4", poster: "assets/models/bandit-poster.jpg", cap: "Bandit (enemy)" }
         ]
       }
     ]
