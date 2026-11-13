@@ -21,6 +21,93 @@
 */
 window.GAMES = [
   {
+    id: "neobit",
+    title: "NeoBit — Mining Bank Simulator",
+    tagline: "An idle clicker about a crypto empire, dressed up as a mobile bank.",
+    description: [
+      "Every tap mines bitcoin. Transfer it to your card at the current rate, then reinvest into hardware or take a chance on the market. Instead of pixel-art farms you get an account, a card, a transaction statement and a live rate chart.",
+      "Ten tiers of hardware, from a USB miner in a laptop to a solar-powered orbital facility, five auto accounts that tap for you and keep earning while the app is closed, and a market of six coins and five stocks with charts, 24-hour change, average entry price and partial profit-taking."
+    ],
+    tags: ["Idle clicker", "Simulator", "Android"],
+    icon: "assets/games/neobit/icon.webp",
+    screenshots: [
+      "assets/games/neobit/1.webp",
+      "assets/games/neobit/2.webp",
+      "assets/games/neobit/3.webp",
+      "assets/games/neobit/4.webp",
+      "assets/games/neobit/5.webp"
+    ],
+    play: "https://play.google.com/store/apps/details?id=com.rough_hold.btcminer",
+    live: true,
+    github: ""
+  },
+  {
+    id: "eagle-one",
+    title: "Mr President vs Terrorist",
+    tagline: "A one-thumb lane runner: pick gates, grow a squad, break through.",
+    description: [
+      "Land from a helicopter and run. Your weapon fires by itself; you steer and decide what to spend your bullets on. Shoot a gate before you reach it and its number climbs, but every round spent on a gate is a round not spent on the crowd.",
+      "Grow a squad from one agent in a red tie to twelve, switch between six weapons (M1911, MP5, M4A1, SPAS-12, minigun, RPG-7), shoot down barriers and mash the screen to beat the heavies. Speed, crowds and armour keep climbing with distance."
+    ],
+    tags: ["Runner", "Shooter", "Android"],
+    icon: "assets/games/eagle-one/icon.webp",
+    screenshots: [
+      "assets/games/eagle-one/1.webp",
+      "assets/games/eagle-one/2.webp",
+      "assets/games/eagle-one/3.webp",
+      "assets/games/eagle-one/4.webp",
+      "assets/games/eagle-one/5.webp",
+      "assets/games/eagle-one/6.webp"
+    ],
+    play: "https://play.google.com/store/apps/details?id=com.rough_hold.eagleone",
+    live: true,
+    github: ""
+  },
+  {
+    id: "doors-kicker",
+    title: "Doors Kicker",
+    tagline: "An endless chase: a police officer after a fugitive through the city.",
+    description: [
+      "A fast endless runner across streets, rooftops and service areas. Change lanes, jump, slide under obstacles and pick the right door in an instant so you do not lose the target.",
+      "Every run gets faster: a helicopter fires at marked areas, cars block whole lanes and the criminal changes his route. Coins, health, shields and streaks, a character store and short runs that are easy to restart."
+    ],
+    tags: ["Endless runner", "Arcade", "Android"],
+    icon: "assets/games/doors-kicker/icon.webp",
+    screenshots: [
+      "assets/games/doors-kicker/1.webp",
+      "assets/games/doors-kicker/2.webp",
+      "assets/games/doors-kicker/3.webp",
+      "assets/games/doors-kicker/4.webp",
+      "assets/games/doors-kicker/5.webp",
+      "assets/games/doors-kicker/6.webp"
+    ],
+    play: "https://play.google.com/store/apps/details?id=com.rough_hold.doorkickerrun",
+    live: true,
+    github: ""
+  },
+  {
+    id: "obsidian-knight",
+    title: "Obsidian Knight",
+    tagline: "Aim your sword, collect relics and conquer five dark fantasy dungeon floors.",
+    description: [
+      "A mobile slasher in 2.5D isometric view. Move with the left stick and aim your sword with the right: retreat, circle an enemy and strike in the direction you choose. Dash, Whirlwind and Holy Nova help you survive.",
+      "Five growing floors, from 12 rooms on the first to 36 on the fifth, with water and lava channels, bridges, treasuries and refuges. Archers, alchemists, brutes, shield-bearers and splitting slimes; two wardens on every floor and the Dark Knight at the bottom. Pick one of three relics from each chest, train with the merchant in camp, then take the throne or go on into a harder cycle. English and Russian."
+    ],
+    tags: ["Slasher", "Roguelite", "Godot", "Android"],
+    icon: "assets/games/obsidian-knight/icon.webp",
+    screenshots: [
+      "assets/games/obsidian-knight/1.webp",
+      "assets/games/obsidian-knight/2.webp",
+      "assets/games/obsidian-knight/3.webp",
+      "assets/games/obsidian-knight/4.webp",
+      "assets/games/obsidian-knight/5.webp",
+      "assets/games/obsidian-knight/6.webp"
+    ],
+    play: "https://play.google.com/store/apps/details?id=com.rough_hold.obsidian_knight",
+    live: false,
+    github: ""
+  },
+  {
     id: "knight-cells",
     title: "Knight Cells",
     tagline: "A fantasy roguelite with sword combat, stacking relics and challenging bosses.",
@@ -121,9 +208,6 @@ window.GAMES = [
   }
 
   /* Hidden for now: these Google Play pages are not available (404). To show one again, add a block like the ones above.
-       Bitcoin Miner              com.rough_hold.btcminer
-       Doors Kicker               com.rough_hold.doorkickerrun
-       Mr President vs Terrorist  com.rough_hold.eagleone
        Sky Hopper                 com.rough_hold.skyhopper
        2042                       com.rough_hold.treeinrlinetwentittwo
   */
