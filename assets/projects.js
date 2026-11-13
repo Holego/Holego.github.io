@@ -34,26 +34,57 @@ window.PROJECTS = [
     coverAlt: "The throne hall of the Winter Castle in Forgotten Island 4",
     intro: [
       "A story-driven action RPG built in Godot 4 for solo play, co-op and a persistent shared world. Play the campaign alone or with up to eight allies through levels 1-60, then step into the online world.",
-      "A playable prototype in active development: systems are built, tested and documented one by one."
+      "A playable prototype in active development: systems are built, tested and documented one by one. Updated November 2026: the rebuilt Winter Castle, a larger island with biomes and wagon travel, the Dustvein mine with an endless dungeon, mage paths, and new bosses and enemies."
     ],
     features: [
       "Talent and profession trees drawn on a Yggdrasil canvas, a world-tree style editor where the layout and the rules live in data.",
-      "Real-time combat: class resources and abilities (warrior rage, mage, rogue combo points), directional weapon motions, status effects and hit feedback.",
+      "Real-time combat: class resources and abilities (warrior rage, mage, rogue combo points), directional weapon motions, status effects and hit feedback. Enemies telegraph their swings (wind-up, hold, a fast pass on the damage frame), blocks are directional and hitboxes match what you see.",
+      "Class paths chosen in a specialization window: the mage becomes a Sorcerer, a Warlock or a Priest, and every path talent has real mechanics (life drain, absorbing shields, elemental fusion). The rogue gets a sidestep-and-counter mini-game.",
       "Sides and races (Empire and Horde), reputation, a character creation screen and class gear rules.",
       "Professions and crafting (alchemy, mining), shops and dialogue market windows.",
       "Poisons, throwable flasks and dynamite, traps.",
       "Enemy AI with a threat system; bosses with telegraphed attacks (charge, ground slam, grab-and-throw) and group boss encounters.",
       "Procedurally generated dungeon floors built from room sockets, plus a death and resurrection flow.",
+      "The Dustvein mine: a rail network described in data (20 lines, 11 switches, loops and hidden caches), mine carts, trap chains, and the Bottomless Adits, an endless dungeon whose difficulty grows floor by floor.",
+      "New enemies and bosses: the Horseman with charge-through passes, overseer squads that take orders (ambush, flank, retreat), flying spearmen and bone archers, mimics.",
+      "Wagon travel between stations on a parchment island map, herbalism as a profession, and English localization groundwork.",
       "A streamed open-world prototype with a world map and an endless forest as the world border.",
       "Server-authoritative co-op and MMO foundations: accounts backend, dedicated zone server, server browser, trading, mounts, chat.",
       "Quests and dialogues, interactive mechanisms (levers, code doors, pressure plates) and environment zones (water, sand, wind, vortex)."
     ],
     groups: [
       {
-        title: "Mechanics",
-        intro: "Screens of the systems that describe the game.",
+        title: "Worlds",
+        intro: "Fresh frames from November 2026: the rebuilt Winter Castle, the open island and its biomes, the Dustvein mine, wagon travel and the Ashen Isle.",
         layout: "shots",
         items: [
+          { img: "assets/fi4/throne-hall.webp", cap: "Winter Castle rebuilt: the throne hall", alt: "A long stone hall with red banners, fire bowls and a red carpet to the throne" },
+          { img: "assets/fi4/throne-king.webp", cap: "The king on the throne between kneeling crusaders", alt: "A king on a throne, fire bowls and a crusader in white armor in the foreground" },
+          { img: "assets/fi4/capital-meadows.webp", cap: "Throne Meadows: the capital on the horizon", alt: "Grassland with trees and a walled city on the horizon" },
+          { img: "assets/fi4/town-plaza.webp", cap: "Bright Ford: the town square", alt: "A cobbled square with a fountain, houses and a tower" },
+          { img: "assets/fi4/march-peaks.webp", cap: "Snowy peaks of the March", alt: "Snow-covered mountains with rocky slopes" },
+          { img: "assets/fi4/pinewood.webp", cap: "Pinewood plains under the mountain", alt: "Plains with pine trees and a mountain in the distance" },
+          { img: "assets/fi4/mine-adit.webp", cap: "The Dustvein mine: the adit and the rails", alt: "A timbered mine entrance with rails going into the dark" },
+          { img: "assets/fi4/mine-gallery.webp", cap: "The deep gallery of the mine", alt: "Rails running through wooden frames deep in a dark mine" },
+          { img: "assets/fi4/wagon-night.webp", cap: "Wagon travel: boarding on the outskirts of Bright Ford", alt: "A hero next to a horse-drawn wagon on a snowy night" },
+          { img: "assets/fi4/waypoint-fire.webp", cap: "A campfire waypoint at the camp", alt: "A hero standing at a campfire between tents at dusk" },
+          { img: "assets/fi4/ashen-isle.webp", cap: "Ashen Isle: red rain under a cratered moon", alt: "A huge moon in a dark sky over a red landscape with falling red rain" },
+          { img: "assets/fi4/ashen-moon.webp", cap: "The moon over the Ashen Isle", alt: "A cratered moon among purple storm clouds" }
+        ]
+      },
+      {
+        title: "Mechanics",
+        intro: "Screens of the systems that describe the game. The interface is in Russian for now; the English translation is in progress.",
+        layout: "shots",
+        items: [
+          { img: "assets/fi4/sys-abilities.webp", cap: "Ability book: abilities, passives and controls", alt: "A book window listing abilities with icons and descriptions" },
+          { img: "assets/fi4/sys-specs.webp", cap: "Specialization window: pick a path, then its talent branch", alt: "A specialization window with a talent branch and descriptions" },
+          { img: "assets/fi4/sys-mage-paths.webp", cap: "Mage paths: Sorcerer, Warlock and Priest", alt: "Three talent trees drawn side by side" },
+          { img: "assets/fi4/sys-market.webp", cap: "A merchant: your bag on the left, his goods on the right", alt: "A trade window with the player's items and the merchant's goods" },
+          { img: "assets/fi4/sys-travel-map.webp", cap: "Coachman's map: stations, route and price", alt: "A parchment map of the island with wagon stations and a highlighted route" },
+          { img: "assets/fi4/map-island.webp", cap: "Island map with regions", alt: "A parchment map of the island divided into regions" },
+          { img: "assets/fi4/map-world.webp", cap: "World map: the islands around the sun", alt: "A round world map with islands around a sun" },
+          { img: "assets/fi4/menu-en.webp", cap: "Main menu in English: story mode (levels 1-60) or the shared world", alt: "The main menu with Single/Co-op and MMO modes" },
           { img: "assets/fi4/ygg-talents.webp", cap: "Talent tree on a Yggdrasil canvas: branches, ranks and prerequisites", alt: "A warrior talent tree drawn as a branching world tree" },
           { img: "assets/fi4/ygg-alchemy.webp", cap: "Profession tree: alchemy recipes unlocked as nodes", alt: "The alchemy profession tree drawn as a branching tree" },
           { img: "assets/fi4/sys-creation.webp", cap: "Character creation: sides, races and classes", alt: "Character creation screen with races, classes and a demon mage preview" },
@@ -63,8 +94,19 @@ window.PROJECTS = [
         ]
       },
       {
-        title: "Worlds",
-        intro: "The prologue level, a village and the open-world prototype.",
+        title: "Bosses and enemies",
+        intro: "New in November: the Horseman boss, mimics and flying enemies (prototype models in the test arena).",
+        layout: "shots",
+        items: [
+          { img: "assets/fi4/rider-concept.webp", cap: "The Horseman: concept art and the model", alt: "Concept art of an undead rider on a horse next to front and side views of the armored model" },
+          { img: "assets/fi4/horseman.webp", cap: "Horseman boss prototype: charge-through passes and circling", alt: "A rider on a black horse charging through the arena in several frames" },
+          { img: "assets/fi4/mimic.webp", cap: "Treasure chests and a mimic among them", alt: "Two chests and a third chest with teeth and glowing eyes" },
+          { img: "assets/fi4/flying-skull.webp", cap: "A flying skull: the bone archer's head", alt: "A large flying skull with green glowing eyes" }
+        ]
+      },
+      {
+        title: "Earlier builds",
+        intro: "The prologue level, a village and the first open-world prototype (October 2026).",
         layout: "shots",
         items: [
           { img: "assets/fi4/castle-throne.webp", cap: "Winter Castle: the throne hall", alt: "The throne hall of the Winter Castle with banners and torches" },
@@ -106,7 +148,7 @@ window.PROJECTS = [
     coverAlt: "Hei discharging electricity between enemies",
     intro: [
       "A single-player third-person action game inspired by the anime Darker than Black. You play Hei, the Black Reaper: electricity, a wire knife, acrobatics, close combat in the spirit of the Arkham games and weapons picked up on the street. The setting is an open night Tokyo with quests and several endings.",
-      "The game is built stage by stage: every stage is designed on paper first, implemented in Godot and committed on its own. Stages 1-6 are done (character, movement, combat, hook, powers, weapons and inventory); stealth is next."
+      "The game is built stage by stage: every stage is designed on paper first, implemented in Godot and committed on its own. Stages 1-11 are done and stage 12 is under way: after the character, movement, combat, hook, powers and weapons came stealth, a night district with a game clock and resident schedules, errands and dialogues, shops, Li's apartment with inventory, map and saves, and drivable cars. Next: the first canonical story mission."
     ],
     features: [
       "Hei's model built in Blender from separate body, coat and mask parts on one skeleton, with a coat that sways on spring bones.",
@@ -116,12 +158,34 @@ window.PROJECTS = [
       "Wire hook: hold-to-aim grapple, swinging between rooftops, pulling enemies in, electricity running down the wire.",
       "A contractor power: an electric discharge that arcs between enemies.",
       "Weapons and inventory: pick up and fire pistols and submachine guns, money and shops.",
+      "Stealth: enemies see in a cone that walls block, hear running and shots, remember where they last saw you and search; crouching keeps you quiet.",
+      "An open night district: a game clock, residents with daily schedules, a 24-hour store, cars you can get in and drive.",
+      "Errands and dialogues with a staged camera, 3D portraits of the speakers and typed-out lines with voice blips.",
+      "Li's apartment: sleep, a wardrobe with a 3D preview (civilian look or the Black Reaper), a stash, a district map, three save slots plus quick and auto saves.",
+      "A toon look with outlines, a night sky and lit windows; the blue glow of a contractor using his power.",
       "Data-driven design: weapons, abilities, quests, dialogues and enemies live in data files."
     ],
     groups: [
       {
+        title: "Night district",
+        intro: "Stages 8-12 (November 2026): the open district, errands, dialogues and Li's apartment. Block-out geometry, the interface is in Russian.",
+        layout: "shots",
+        items: [
+          { img: "assets/dtb/courier.webp", cap: "A courier asks for help on the shopping street", alt: "A night street with lit high-rises, a car and a dialogue panel with a courier" },
+          { img: "assets/dtb/district.webp", cap: "The district at night: a neighbor and an errand marker", alt: "Hei in a night courtyard between lit buildings, a neighbor nearby" },
+          { img: "assets/dtb/dialogue.webp", cap: "Dialogue with a 3D portrait and answer choices", alt: "A neighbor standing in the courtyard, a dialogue panel with a portrait and two answers" },
+          { img: "assets/dtb/street-bandits.webp", cap: "Bandits gather on the street: a warning before a fight", alt: "Hei in front of a group of bandits on a lit street at night" },
+          { img: "assets/dtb/car.webp", cap: "A car you can get in and drive", alt: "A sedan parked between high-rises at night" },
+          { img: "assets/dtb/apartment.webp", cap: "Li's apartment: bed, wardrobe and stash", alt: "Hei standing in a small apartment with a bed and furniture" },
+          { img: "assets/dtb/wardrobe.webp", cap: "Wardrobe with a 3D preview: civilian look or the Black Reaper", alt: "A wardrobe window with outfit options and a preview of the character" },
+          { img: "assets/dtb/stash.webp", cap: "Stash: move items between the bag and the hiding place", alt: "A stash window with two columns of items" },
+          { img: "assets/dtb/district-map.webp", cap: "District map: home, the current target, shops and alleys", alt: "A map window with the district layout and markers" },
+          { img: "assets/dtb/shop.webp", cap: "A 24-hour store", alt: "A shop window with goods, prices and buy buttons" }
+        ]
+      },
+      {
         title: "Gameplay",
-        intro: "Frames from the test sandbox level (placeholder geometry).",
+        intro: "Frames from the test sandbox level, stages 1-6 (placeholder geometry).",
         layout: "shots",
         items: [
           { img: "assets/dtb/discharge.webp", cap: "Electric discharge arcing between enemies", alt: "Hei and enemies with a bolt of electricity between them" },
